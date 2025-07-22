@@ -1,16 +1,50 @@
 # Chess-AI
 
-I have built a deep learning-based chess AI that you can play against, featuring a PyGame GUI, models trained on Lichess data, and a clean, modular Python codebase for experimentation and learning.
+A deep learning-based chess AI that you can play against, featuring a PyGame GUI, a clean modular codebase, and models trained on the Lichess database.
 
-## Features
+---
 
-✅ Play chess against a neural network-based AI locally  
-✅ PyGame-powered intuitive GUI  
-✅ Models trained on large-scale Lichess database  
-✅ Modular and easy-to-understand Python implementation  
-✅ Suitable for learning AI + game development fundamentals
+## 📂 Project Structure
 
-## Getting Started
+```
+chess-ai/
+│
+├── data_cleaning/
+│   ├── extract_fen.py
+│   ├── get_moves.py
+│   └── README.md
+│
+├── gui/
+│   ├── draw.py
+│   ├── globals.py
+│   ├── main.py         # Entry point for playing the game
+│   ├── players.py
+│   ├── test.py
+│   └── images/, models/
+│
+├── train/
+│   ├── model_parts.py
+│   ├── model.py
+│   ├── save_weights.py
+│   ├── test.py
+│   └── logs/
+│
+├── .venv/
+└── .idea/
+```
+
+---
+
+## 🚀 Features
+
+✅ Play chess against an AI locally via GUI  
+✅ Models trained on Lichess PGN data  
+✅ Clean, modular Python for learning and experimentation  
+✅ Uses TensorFlow/Keras, PyGame, and python-chess
+
+---
+
+## 🎮 Running the Game
 
 ### 1️⃣ Clone the repository
 ```bash
@@ -18,89 +52,75 @@ git clone https://github.com/YOUR_USERNAME/chess-ai.git
 cd chess-ai
 ```
 
-### 2️⃣ Set up your environment
-Create and activate a virtual environment:
+### 2️⃣ Create and activate a virtual environment
 ```bash
-python -m venv .
-# Windows
-Scripts\activate
-# Mac/Linux
-source bin/activate
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+# Mac/Linux:
+source .venv/bin/activate
 ```
 
 ### 3️⃣ Install dependencies
 ```bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-### 4️⃣ Launch the game
+### 4️⃣ Run the game
 ```bash
 cd gui
 python main.py
 ```
 
-Enjoy playing against your AI!
+---
+
+## 🛠️ How It Works
+
+### 📑 Data
+- Uses Lichess PGN database for real-game data.
+- `data_cleaning/` scripts convert PGN to FEN and extract move pairs for training.
+
+### 🧠 Model
+- Two deep learning models:
+  - **From-model:** predicts the source square.
+  - **To-model:** predicts the destination square.
+- For each legal move:
+  ```
+  Score = P(from_square) * P(to_square)
+  ```
+  The move with the highest score is executed.
+
+### 🎨 GUI
+- Built using **PyGame** and **python-chess**.
+- Simple, clean interface to play against your AI.
 
 ---
 
-## How It Works
+## ✏️ Future Improvements
 
-### Data
-- Uses the official **Lichess PGN database** for training.
-- Processing steps:
-  - Convert PGN to FEN for each move.
-  - Extract “from” and “to” squares.
-  - Prepare training samples for the model.
-
-### Model
-The chess AI uses **two deep learning models**:
-- **From-model:** Predicts the square to move from.
-- **To-model:** Predicts the square to move to.
-
-For each legal move:
-```
-Score = P(from_square) * P(to_square)
-```
-The move with the highest score is executed.
-
-**Architecture:**
-- 6 convolutional layers
-- 2 dense layers + output
-- Softmax outputs over an 8x8 matrix
-- Trained using TensorFlow/Keras
+✅ Add difficulty levels by adjusting model thresholds  
+✅ Support for custom board setups  
+✅ Online multiplayer with AI move suggestions  
+✅ Visual move explanations using heatmaps
 
 ---
 
-## GUI
+## 🤝 Contributing
 
-Built using **PyGame** and **python-chess** for an interactive chess-playing experience.
-
----
-
-## Why This Project
-
-I am passionate about chess and AI, and this project combines both while reinforcing my skills in:
-- Deep learning model design
-- Data preprocessing
-- Game development
-- Clean, scalable Python coding practices
-
----
-
-## Contributing
-
-Pull requests and suggestions are welcome for:
-- Improving model performance
-- Adding new training pipelines
+Pull requests are welcome for:
+- Improving model accuracy
+- Optimizing training scripts
 - Enhancing GUI features
+- Adding testing scripts
 
 ---
 
+## 📧 Contact
 
-## Contact
-
-For questions or discussions, reach out via:
+For discussions, improvements, or collaborations:
 - GitHub Issues
-- kokkirpatiraviteja@gmail.com 
+- kokkirapatiraviteja@gmail.com
 
 ---
+
+Enjoy playing chess while learning deep learning fundamentals!
